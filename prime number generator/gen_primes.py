@@ -20,3 +20,4 @@ def gen_primes(limit):
     if is_prime:
       yield i
     i += 2
+    
