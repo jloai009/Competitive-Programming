@@ -1,5 +1,4 @@
 from sys import stdin
-from itertools import permutations
 
 
 def indexInSortedPermutations(spellingList):
@@ -20,16 +19,24 @@ def indexInSortedPermutations(spellingList):
     for i in range(n-1, 0, -1):
         nFact *= i
 
-    idxInSortedPerm = 0
+    sortedWords = sorted(words)
 
-    for i, w in enumerate(words):
-        wordWeights= {word: idx for idx, word in enumerate(sorted(words[i:]))}
+    sortedWordIdxs = {word: idx for idx, word in enumerate(sortedWords)}
+
+    wordWeights = sortedWordIdxs.copy()
+
+    posInSortedPerms = 0
+
+    for i, word in enumerate(words):
 
         nFact //= len(words)-i
 
-        idxInSortedPerm += nFact*wordWeights[w]
+        posInSortedPerms += nFact*wordWeights[word]
 
-    print(idxInSortedPerm+1)
+        for j in range(sortedWordIdxs[word], len(words)):
+            wordWeights[sortedWords[j]] -= 1
+
+    print(posInSortedPerms+1)
 
 
 if __name__ == "__main__":
