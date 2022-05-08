@@ -1,3 +1,7 @@
 {
-  "cSpell.words": ["Idxs", "Vals"]
+  "cSpell.words": ["Idxs", "Vals"],
+  "[python]": {
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true
+  }
 }
