@@ -1,6 +1,7 @@
 from collections import Counter
 from sys import stdin
 
+
 def play(case, game):
     """
     Google Code Jam 2012 Round 3 Problem 2:
@@ -14,16 +15,17 @@ def play(case, game):
 
     for i, move in enumerate(moves):
         r, c = move
-        
-        neigh = [(r+1,c+1), (r,c+1), (r-1,c), (r-1,c-1), (r,c-1), (r+1,c)]
 
-        neighReps = [(graph.find(n) if n in graph.up else None) for n in neigh] * 2
-    
+        neigh = [(r+1, c+1), (r, c+1), (r-1, c),
+                 (r-1, c-1), (r, c-1), (r+1, c)]
+
+        neighReps = [(graph.find(n) if n in graph.up else None)
+                     for n in neigh] * 2
+
         for i1, r1 in enumerate(neighReps):
             for i2, r2 in enumerate(neighReps):
                 if i1 < i2 and 1 < i2-i1 < 5 and r1 and r2 and r1 == r2:
-                    if any([n is None for n in neighReps[i1+1:i2]]) \
-                    and any([n is None for n in neighReps[i2+1:i1+6]]):
+                    if not all(neighReps[i1+1:i2]) and not all(neighReps[i2+1:i1+6]):
                         ring = True
 
         for adj in neigh:
@@ -34,11 +36,11 @@ def play(case, game):
         corners = edges = 0
 
         for j in range(6):
-            if compInfo & 1<<j:
+            if compInfo & 1 << j:
                 corners += 1
-        
+
         for j in range(6, 12):
-            if compInfo & 1<<j:
+            if compInfo & 1 << j:
                 edges += 1
 
         if corners > 1:
@@ -80,7 +82,7 @@ class UnionFind:
     def union(self, x, y):
         repX = self.find(x)
         repY = self.find(y)
-        
+
         if repX == repY:
             return False
 
@@ -100,13 +102,13 @@ class UnionFind:
 
 
 def checkType(x, S):
-    for i, corner in enumerate(((1,1), (1,S), (S, S*2-1), (S*2-1, S*2-1), (S*2-1, S), (S, 1))):
+    for i, corner in enumerate(((1, 1), (1, S), (S, S*2-1), (S*2-1, S*2-1), (S*2-1, S), (S, 1))):
         if x == corner:
             return 1 << i
 
     if S < 3:
         return 0
-    
+
     r, c = x
     if r == 1:
         return 1 << 6
@@ -137,4 +139,4 @@ if __name__ == "__main__":
         instances.append([S, M, moves])
 
     for i, instance in enumerate(instances):
-        play(i+1,instance)
+        play(i+1, instance)
