@@ -1,1 +1,1 @@
-# Pythonic Data Structures and Algorithms
+# My Solutions to Problems of Competitive Programming
