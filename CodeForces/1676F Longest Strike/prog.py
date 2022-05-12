@@ -19,9 +19,9 @@ for _ in range(int(input())):
             left = right
             continue
         if a[right] - a[left] > ans[0]:
-            ans = (a[right] - a[left], left, right)
+            ans = (a[right] - a[left], a[left], a[right])
             
-    if ans[1]== -1 or ans[2] == -1:
+    if ans[0]==-math.inf:
         print(-1)
     else:
-        print(f"{a[ans[1]]} {a[ans[2]]}")
+        print(f"{ans[1]} {ans[2]}")
