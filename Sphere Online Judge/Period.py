@@ -1,6 +1,14 @@
 
-#  SPOJ - PERIOD - Period
-#  https://www.spoj.com/problems/PERIOD/
+# SPOJ - PERIOD - Period
+# https://www.spoj.com/problems/PERIOD/
+
+# For each prefix of a given string S with N characters
+# (each character has an ASCII code between 97 and 126, inclusive),
+# we want to know whether the prefix is a periodic string. That is,
+# for each i (2 <= i <= N) we want to know the largest K > 1 (if there is one)
+# such that the prefix of S with length i can be written as AK ,
+# that is A concatenated K times, for some string A.
+# Of course, we also want to know the period K. 
 
 def maximal_boundaries(w):
     n = len(w)
