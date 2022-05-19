@@ -1,1 +1,1 @@
-# My Solutions to Problems of Competitive Programming
+# Documenting my Activities in Competitive Programming
